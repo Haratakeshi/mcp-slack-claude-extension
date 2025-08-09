@@ -1,0 +1,27 @@
+{
+  "name": "mcp-slack-claude-extension",
+  "version": "1.0.0",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc && copyfiles -u 1 \"src/data/**/*.json\" dist",
+    "pack": "dxt pack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "type": "module",
+  "devDependencies": {
+    "@anthropic-ai/dxt": "^0.2.6",
+    "@types/node": "^24.1.0",
+    "copyfiles": "^2.4.1",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.1",
+    "@slack/web-api": "^7.9.3",
+    "zod": "^3.23.8",
+    "zod-to-json-schema": "^3.24.6"
+  }
+}

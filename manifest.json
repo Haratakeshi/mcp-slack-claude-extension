@@ -1,0 +1,30 @@
+{
+  "dxt_version": "0.1",
+  "name": "slack-history-extension",
+  "display_name": "Slack History Extension",
+  "version": "0.1.0",
+  "description": "Slack APIと連携し、チャンネルの会話履歴を取得するための拡張機能です。",
+  "author": {
+    "name": "Haratake"
+  },
+  "server": {
+    "type": "node",
+    "entry_point": "dist/server.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/dist/server.js"],
+      "env": {
+        "SLACK_USER_OAUTH_TOKEN": "${user_config.SLACK_USER_OAUTH_TOKEN}"
+      }
+    }
+  },
+  "user_config": {
+    "SLACK_USER_OAUTH_TOKEN": {
+      "type": "string",
+      "title": "Slack User OAuth Token",
+      "description": "Slackアプリから発行された `xoxp-` で始まるUser OAuth Tokenを入力してください。",
+      "sensitive": true,
+      "required": true
+    }
+  }
+}

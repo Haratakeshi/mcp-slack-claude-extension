@@ -4,6 +4,7 @@
   "display_name": "Slack History Extension",
   "version": "0.1.0",
   "description": "Slack APIと連携し、チャンネルの会話履歴を取得するための拡張機能です。",
+  "icon": "icon.png",
   "author": {
     "name": "Haratake"
   },

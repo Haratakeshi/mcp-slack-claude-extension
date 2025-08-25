@@ -17,7 +17,7 @@ export type ChannelsReadInput = z.infer<typeof ChannelsReadSchema>;
  * ワークスペースのチャンネル一覧を取得します。
  * Slack APIの `conversations.list` メソッドに対応します。
  */
-export const channelsReadDescription = 'ワークスペースのチャンネル一覧を取得します。';
+export const channelsReadDescription = 'ワークスペースのチャンネル一覧を、整形された形式で取得します。';
 
 /**
  * @param env {ToolEnv} SLACK_USER_TOKENを含む環境変数

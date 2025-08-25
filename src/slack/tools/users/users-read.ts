@@ -16,7 +16,7 @@ export type UsersReadInput = z.infer<typeof UsersReadSchema>;
  * ワークスペースのユーザー一覧を取得します。
  * Slack APIの `users.list` メソッドに対応します。
  */
-export const usersReadDescription = 'ワークスペースのユーザー一覧を取得します。';
+export const usersReadDescription = 'ワークスペースのユーザー一覧を、整形された形式で取得します。';
 
 /**
  * @param env {ToolEnv} SLACK_USER_TOKENを含む環境変数

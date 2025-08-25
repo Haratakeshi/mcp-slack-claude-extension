@@ -14,7 +14,7 @@ export type ChannelsHistoryInput = z.infer<typeof ChannelsHistorySchema>;
  * パブリックチャンネルのメッセージ履歴を取得します。
  * Slack APIの `conversations.history` メソッドに対応します。
  */
-export const channelsHistoryDescription = 'パブリックチャンネルのメッセージ履歴を取得します。';
+export const channelsHistoryDescription = 'パブリックチャンネルのメッセージ履歴を、整形された形式で取得します。タイムスタンプはYYYY-MM-DD HH:mm:ss形式です。';
 
 /**
  * @param env {ToolEnv} SLACK_USER_TOKENを含む環境変数

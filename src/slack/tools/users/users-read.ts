@@ -2,7 +2,8 @@ import { z } from 'zod';
 import { SlackAuthenticator } from '../../shared/auth.js';
 import { handleSlackError } from '../../shared/error-handler.js';
 import { PaginationSchema } from '../../shared/validators.js';
-import { ToolEnv } from '../../shared/types.js';
+import { ToolEnv, SlackUser } from '../../shared/types.js';
+import { transformUser } from '../../shared/transformer.js';
 
 // 入力スキーマを定義
 export const UsersReadSchema = PaginationSchema.extend({
@@ -41,9 +42,11 @@ export async function usersRead(env: ToolEnv, input: UsersReadInput): Promise<ob
   }
 
   // 3. レスポンス整形
+  const transformedUsers = (result.members as SlackUser[] || []).map(transformUser);
+
   return {
-    users: result.members || [],
+    users: transformedUsers,
     response_metadata: result.response_metadata,
-    total_count: result.members?.length || 0,
+    total_count: transformedUsers.length,
   };
 }

@@ -68,8 +68,8 @@ export const SpecializedSearchSchema = ExtendedSearchQuerySchema.omit({
  */
 export const MessageHistorySchema = PaginationSchema.extend({
   channel: ChannelIdSchema.describe('履歴を取得するチャンネルID'),
-  oldest: z.string().optional().describe('取得範囲の開始タイムスタンプ'),
-  latest: z.string().optional().describe('取得範囲の終了タイムスタンプ'),
+  oldest: z.string().optional().describe('取得範囲の開始日時 (UNIXタイムスタンプ, "YYYY-MM-DD", "YYYY-MM-DD HH:mm:ss")'),
+  latest: z.string().optional().describe('取得範囲の終了日時 (UNIXタイムスタンプ, "YYYY-MM-DD", "YYYY-MM-DD HH:mm:ss")'),
   inclusive: z.boolean().default(false).optional().describe('開始・終了時刻を含むか'),
   include_all_metadata: z.boolean().default(false).optional().describe('すべてのメタデータを含むか'),
 });

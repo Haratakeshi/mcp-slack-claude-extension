@@ -2,7 +2,8 @@ import { z } from 'zod';
 import { SlackAuthenticator } from '../../shared/auth.js';
 import { handleSlackError } from '../../shared/error-handler.js';
 import { MessageHistorySchema } from '../../shared/validators.js';
-import { ToolEnv } from '../../shared/types.js';
+import { ToolEnv, SlackMessage } from '../../shared/types.js';
+import { transformMessage, toSlackTimestamp } from '../../shared/transformer.js';
 
 // 入力スキーマを定義
 export const ChannelsHistorySchema = MessageHistorySchema;
@@ -32,8 +33,8 @@ export async function channelsHistory(env: ToolEnv, input: ChannelsHistoryInput)
     channel: validatedInput.channel,
     cursor: validatedInput.cursor,
     limit: validatedInput.limit,
-    oldest: validatedInput.oldest,
-    latest: validatedInput.latest,
+    oldest: toSlackTimestamp(validatedInput.oldest),
+    latest: toSlackTimestamp(validatedInput.latest),
     inclusive: validatedInput.inclusive,
     include_all_metadata: validatedInput.include_all_metadata,
   });
@@ -43,8 +44,10 @@ export async function channelsHistory(env: ToolEnv, input: ChannelsHistoryInput)
   }
 
   // 3. レスポンス整形
+  const transformedMessages = (result.messages as SlackMessage[] || []).map(transformMessage);
+
   return {
-    messages: result.messages || [],
+    messages: transformedMessages,
     has_more: result.has_more || false,
     pin_count: result.pin_count || 0,
     response_metadata: result.response_metadata,
